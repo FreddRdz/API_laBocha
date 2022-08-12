@@ -1,16 +1,23 @@
 const express = require('express');
+const colors = require('colors');
+require('dotenv').config();
 
 const app = express();
 
 // Middlewares
 app.use(express.json());
 
-const router = require('./src/routes/players');
+// Connection to db
+const connectToDb = require('./src/config/db');
+connectToDb();
 
-app.use('/api/v1/players', router);
+// Player routes
+const routerPlayers = require('./src/routes/players');
+app.use('/api/v1/players', routerPlayers);
 
-const PORT = 5050;
+// Environment variables
+const PORT = process.env.PORT || 6000;
 
 app.listen(PORT, () => {
-  console.log(`App running on port ${PORT}`);
+  console.log(`App running on port ${PORT}`.bold);
 });
