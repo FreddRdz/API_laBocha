@@ -8,6 +8,21 @@ const playerService = {
       return error;
     }
   },
+
+  getOne: (id) => {
+    try {
+      return PLAYER.find({ _id: id });
+    } catch (error) {
+      return error;
+    }
+  },
+  create: (newPlayer) => {
+    try {
+      return PLAYER.create(newPlayer);
+    } catch (error) {
+      return error;
+    }
+  },
 };
 
 module.exports = playerService;

@@ -23,18 +23,8 @@ const PlayerSchema = new Schema({
     unique: true,
   },
 
-  number: {
-    type: Number,
-    required: true,
-  },
-
   goals: {
     type: Number,
-    required: true,
-  },
-
-  position: {
-    type: String,
     required: true,
   },
 
@@ -44,7 +34,7 @@ const PlayerSchema = new Schema({
   },
 
   weight: {
-    type: String,
+    type: Number,
     required: true,
   },
 
