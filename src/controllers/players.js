@@ -1,6 +1,14 @@
+const playerService = require('../services/playerService');
+
 const playerController = {
-  getAllPlayers: (req, res) => {
-    return res.status(200).send('All players');
+  getAllPlayers: async (req, res) => {
+    const allPlayers = await playerService.getAll();
+
+    return res.status(200).json({
+      status: 200,
+      total: allPlayers.length,
+      data: allPlayers,
+    });
   },
 
   getPlayerById: (req, res) => {
