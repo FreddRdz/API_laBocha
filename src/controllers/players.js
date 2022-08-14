@@ -20,6 +20,7 @@ const playerController = {
 
   createPlayer: async (req, res) => {
     const newPlayer = { ...req.body };
+
     const playerCreated = await playerService.create(newPlayer);
 
     return res.status(201).json({ status: 201, data: playerCreated });

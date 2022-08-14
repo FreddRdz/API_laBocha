@@ -8,6 +8,7 @@ const {
 } = require('../controllers/players');
 
 const { checkImageUrl, checkActualClub } = require('../middlewares/player');
+const { validateCreate } = require('../validators/player');
 
 const router = express.Router();
 
@@ -15,7 +16,7 @@ router.get('/', getAllPlayers);
 
 router.get('/:id', getPlayerById);
 
-router.post('/', checkImageUrl, checkActualClub, createPlayer);
+router.post('/', checkImageUrl, checkActualClub, validateCreate, createPlayer);
 
 router.patch('/:id', modifyPlayer);
 
