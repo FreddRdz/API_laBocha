@@ -19,21 +19,7 @@ const playerController = {
   },
 
   createPlayer: async (req, res) => {
-    const newPlayer = {
-      name: 'Alfredo',
-      lastName: 'Rodríguez',
-      email: 'fredd.073100@gmail.com',
-      password: '123456',
-      goals: 0,
-      nationality: 'MXN',
-      weight: 57.3,
-      height: 1.73,
-      matchesPlayed: 0,
-      actualClub: null,
-      imagePlayer:
-        'https://sabercompetir.com/el-perfil-del-jugador-competitivo/',
-      trophies: null,
-    };
+    const newPlayer = { ...req.body };
     const playerCreated = await playerService.create(newPlayer);
 
     return res.status(201).json({ status: 201, data: playerCreated });

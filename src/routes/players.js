@@ -7,13 +7,15 @@ const {
   deletePlayer,
 } = require('../controllers/players');
 
+const { checkImageUrl, checkActualClub } = require('../middlewares/player');
+
 const router = express.Router();
 
 router.get('/', getAllPlayers);
 
 router.get('/:id', getPlayerById);
 
-router.post('/', createPlayer);
+router.post('/', checkImageUrl, checkActualClub, createPlayer);
 
 router.patch('/:id', modifyPlayer);
 

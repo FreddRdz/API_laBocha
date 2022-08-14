@@ -25,7 +25,6 @@ const PlayerSchema = new Schema({
 
   goals: {
     type: Number,
-    required: true,
   },
 
   nationality: {
@@ -54,7 +53,6 @@ const PlayerSchema = new Schema({
 
   imagePlayer: {
     type: String,
-    required: true,
   },
 
   trophies: [{ type: Schema.Types.ObjectId, ref: 'Trophy' }],
