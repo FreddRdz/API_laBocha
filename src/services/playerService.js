@@ -23,6 +23,7 @@ const playerService = {
       return error;
     }
   },
+  delete: (id) => {},
 };
 
 module.exports = playerService;

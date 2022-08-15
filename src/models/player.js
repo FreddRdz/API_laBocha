@@ -25,6 +25,7 @@ const PlayerSchema = new Schema({
 
   goals: {
     type: Number,
+    default: 0,
   },
 
   nationality: {
@@ -55,7 +56,22 @@ const PlayerSchema = new Schema({
     type: String,
   },
 
+  curp: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+
   trophies: [{ type: Schema.Types.ObjectId, ref: 'Trophy' }],
+
+  createdAt: {
+    type: Date,
+    default: new Date(),
+  },
+
+  deletedAt: {
+    type: Date,
+  },
 });
 
 const Player = model('Player', PlayerSchema);
