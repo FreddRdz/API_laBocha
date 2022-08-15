@@ -24,3 +24,5 @@ const validateCurp = (curp) => {
 
   return true; //Validado
 };
+
+module.exports = { validateCurp };
