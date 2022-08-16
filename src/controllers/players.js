@@ -31,6 +31,10 @@ const playerController = {
   loginPlayer: async (req, res) => {
     const { email, password } = req.body;
     const playerFound = await playerService.login(email);
+
+    playerFound === null ??
+      res.status(403).json({ status: 403, data: 'Usuario no encontrado' });
+
     const player = await compare(password, playerFound.password);
     const { status, data } = userLogged(player);
 
