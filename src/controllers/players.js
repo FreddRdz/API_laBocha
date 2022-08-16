@@ -1,10 +1,12 @@
 const playerService = require('../services/playerService');
+const { compare } = require('../helpers/cryptHandler');
+const { userLogged } = require('../helpers/playerLoggedHandler');
 
 const playerController = {
   getAllPlayers: async (req, res) => {
     const allPlayers = await playerService.getAll();
 
-    return res.status(200).json({
+    res.status(200).json({
       status: 200,
       total: allPlayers.length,
       data: allPlayers,
@@ -15,7 +17,7 @@ const playerController = {
     const { id } = req.params;
     const player = await playerService.getOne(id);
 
-    return res.status(200).json({ status: 200, data: player });
+    res.status(200).json({ status: 200, data: player });
   },
 
   createPlayer: async (req, res) => {
@@ -23,15 +25,24 @@ const playerController = {
 
     const playerCreated = await playerService.create(newPlayer);
 
-    return res.status(201).json({ status: 201, data: playerCreated });
+    res.status(201).json({ status: 201, data: playerCreated });
+  },
+
+  loginPlayer: async (req, res) => {
+    const { email, password } = req.body;
+    const playerFound = await playerService.login(email);
+    const player = await compare(password, playerFound.password);
+    const { status, data } = userLogged(player);
+
+    res.status(status).json({ status: status, data: data });
   },
 
   modifyPlayer: (req, res) => {
-    return res.status(200).send('Player modified');
+    res.status(200).send('Player modified');
   },
 
   deletePlayer: (req, res) => {
-    return res.status(200).send('Player deleted');
+    res.status(200).send('Player deleted');
   },
 };
 

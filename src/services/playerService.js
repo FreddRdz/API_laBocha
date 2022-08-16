@@ -24,6 +24,14 @@ const playerService = {
     }
   },
   delete: (id) => {},
+
+  login: (email) => {
+    try {
+      return PLAYER.findOne({ email: email });
+    } catch (error) {
+      return error;
+    }
+  },
 };
 
 module.exports = playerService;

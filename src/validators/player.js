@@ -11,7 +11,6 @@ const validateCreate = [
     .exists()
     .trim()
     .isLength({ min: 6, max: 100 })
-    .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/)
     .not()
     .isEmpty(),
   check('curp')
