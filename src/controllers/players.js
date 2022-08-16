@@ -32,13 +32,14 @@ const playerController = {
     const { email, password } = req.body;
     const playerFound = await playerService.login(email);
 
-    playerFound === null ??
+    if (playerFound === null || undefined) {
       res.status(403).json({ status: 403, data: 'Usuario no encontrado' });
+    } else {
+      const player = await compare(password, playerFound.password);
+      const { status, data } = userLogged(player);
 
-    const player = await compare(password, playerFound.password);
-    const { status, data } = userLogged(player);
-
-    res.status(status).json({ status: status, data: data });
+      res.status(status).json({ status: status, data: data });
+    }
   },
 
   modifyPlayer: (req, res) => {
